@@ -163,6 +163,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+        * Passport
+        */
+        Laravel\Passport\PassportServiceProvider::class,
+        /*
          * Package Service Providers...
          */
 
