@@ -7,6 +7,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Article::class, function (Faker $faker) {
     return [
-        //
+        'uid' => $faker->randomDigit(),
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(),
+        'likes' => $faker->randomDigit(),
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now()
     ];
 });
