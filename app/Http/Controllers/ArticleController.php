@@ -40,8 +40,9 @@ class ArticleController extends Controller
      * @param Request $request
      * @return ArticleResource
      */
-    private function update(Article $article, Request $request): ArticleResource {
+    public function update(Article $article, Request $request): ArticleResource {
         $article->update($request->all());
         return new ArticleResource($article);
     }
+
 }
