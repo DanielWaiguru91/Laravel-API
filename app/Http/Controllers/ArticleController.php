@@ -44,5 +44,12 @@ class ArticleController extends Controller
         $article->update($request->all());
         return new ArticleResource($article);
     }
+    public function destroy(Article $article) {
+        $article->delete();
 
+        return response()->json([
+            'message' => 'Deleted successfully'
+        ], 200)
+        ->header('Content-Type', 'application/json');
+    }
 }
