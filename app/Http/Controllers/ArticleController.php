@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Http\Resources\ArticleResourceCollection;
 
 class ArticleController extends Controller
 {
-    public function index() {
-        return Article::all();
+    public function index(): ArticleResourceCollection {
+        return new ArticleResourceCollection(Article::paginate());
     }
     public function store(Request $request) {
         $validBlog = $request->validate([
