@@ -9,11 +9,18 @@ use App\Http\Resources\ArticleResourceCollection;
 
 class ArticleController extends Controller
 {
+    /**
+     * @return ArticleResourceCollection
+     */
     public function index(): ArticleResourceCollection {
         return new ArticleResourceCollection(Article::paginate());
     }
+    /**
+     * @param Request $request
+     * @return ArticleResource
+     */
     public function store(Request $request) {
-        $validBlog = $request->validate([
+        $request->validate([
             'uid' => 'required',
             'title' => 'required|unique:articles|max:255',
             'content' => 'required'
@@ -21,5 +28,7 @@ class ArticleController extends Controller
         $article = Article::create($request->all());
         return new ArticleResource($article);
     }
-
+    public function show(Article $article): ArticleResource {
+        return new ArticleResource($article);
+    }
 }
