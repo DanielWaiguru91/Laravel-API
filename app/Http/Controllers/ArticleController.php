@@ -28,7 +28,20 @@ class ArticleController extends Controller
         $article = Article::create($request->all());
         return new ArticleResource($article);
     }
+    /**
+     * @param Article $article
+     * @return ArticleResource
+     */
     public function show(Article $article): ArticleResource {
+        return new ArticleResource($article);
+    }
+    /**
+     * @param Article $article
+     * @param Request $request
+     * @return ArticleResource
+     */
+    private function update(Article $article, Request $request): ArticleResource {
+        $article->update($request->all());
         return new ArticleResource($article);
     }
 }
