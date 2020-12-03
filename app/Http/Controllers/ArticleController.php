@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticleResourceCollection;
 
 class ArticleController extends Controller
@@ -17,7 +18,8 @@ class ArticleController extends Controller
             'title' => 'required|unique:articles|max:255',
             'content' => 'required'
         ]);
-        Article::create($validBlog);
-        return $validBlog;
+        $article = Article::create($request->all());
+        return new ArticleResource($article);
     }
+
 }
